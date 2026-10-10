@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Small.AI helps small businesses get started with AI. Fill out a short survey to get started.">
+<title>Small.AI</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101B33'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23FFD43A'/%3E%3C/svg%3E">
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: pitch on the left, survey card on the right and visible in the first frame; one column on phones. */
+:root{
+  --paper:#F1F4F9; --card:#FFFFFF; --ink:#101B33; --muted:#55607A; --line:#D3DAE7;
+  --blue:#2346D6; --on-blue:#FFFFFF; --hivis:#FFD43A; --on-hivis:#101B33; --error:#B42318;
+  --field:#FFFFFF; --shadow:0 18px 40px -24px rgba(16,27,51,.35);
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C1322; --card:#141D33; --ink:#EEF2FA; --muted:#9BA7C2; --line:#2A3654;
+    --blue:#8AA4FF; --on-blue:#0C1322; --hivis:#FFD43A; --on-hivis:#101B33; --error:#FF9B8E;
+    --field:#0F1729; --shadow:0 18px 40px -24px rgba(0,0,0,.7); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0C1322; --card:#141D33; --ink:#EEF2FA; --muted:#9BA7C2; --line:#2A3654;
+  --blue:#8AA4FF; --on-blue:#0C1322; --hivis:#FFD43A; --on-hivis:#101B33; --error:#FF9B8E;
+  --field:#0F1729; --shadow:0 18px 40px -24px rgba(0,0,0,.7); color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px);padding-block:28px 48px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:clamp(28px,5vw,56px)}
+.logo{font-family:var(--display);font-weight:800;font-size:1.7rem;letter-spacing:-.03em;line-height:1;display:inline-flex;align-items:baseline;color:var(--ink);text-decoration:none}
+.logo i{display:inline-block;width:.34em;height:.34em;border-radius:50%;background:var(--hivis);margin:0 .07em;box-shadow:0 0 0 2px var(--ink)}
+.chip{background:var(--hivis);color:var(--on-hivis);font-weight:700;font-size:.85rem;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,64px);align-items:start}
+.pitch{position:sticky;top:calc(env(safe-area-inset-top,0px) + 28px);display:flex;flex-direction:column;gap:28px;min-width:0}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.3rem,4.7vw,3.7rem);line-height:1.02;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.lede{font-size:1.15rem;color:var(--muted);margin:0;max-width:34em}
+.promises{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
+.promises li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:14px;align-items:start}
+.promises svg{width:26px;height:26px;margin-top:2px}
+.promises strong{display:block;font-family:var(--display);font-weight:700;font-size:1.12rem;letter-spacing:-.01em}
+.promises span{color:var(--muted);font-size:.98rem}
+.jump{display:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:clamp(20px,3.2vw,36px);min-width:0;scroll-margin-top:16px}
+.card h2{font-family:var(--display);font-weight:700;font-size:1.6rem;letter-spacing:-.02em;line-height:1.15;margin:0 0 6px;text-wrap:balance}
+.card .sub{color:var(--muted);margin:0 0 20px;font-size:1rem}
+.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px}
+.bars b{height:6px;border-radius:3px;background:var(--line)}
+.bars b.on{background:var(--blue)}
+.stepname{font-size:.9rem;color:var(--muted);font-weight:600;margin:0 0 22px}
+fieldset{border:0;padding:0;margin:0;min-width:0;display:flex;flex-direction:column;gap:18px}
+legend{padding:0;font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;margin-bottom:4px}
+.intro{color:var(--muted);margin:0;font-size:1rem}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f label,.f .lab{font-weight:600;font-size:1rem}
+.f small{color:var(--muted);font-size:.9rem;line-height:1.4}
+.opt{font-weight:500;color:var(--muted);font-size:.85rem}
+input[type=text],input[type=email],textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:11px;padding:12px 14px}
+textarea{min-height:92px;resize:vertical;line-height:1.45}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
+input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible,.pick input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+.bad input,.bad textarea{border-color:var(--error)}
+.msg{color:var(--error);font-size:.9rem;font-weight:600}
+.task{border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:18px}
+.task h3{font-family:var(--display);font-weight:700;font-size:1.1rem;margin:0}
+.picks{display:flex;flex-wrap:wrap;gap:8px}
+.pick{position:relative}
+.pick input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.pick span{display:block;border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:600;font-size:.95rem;background:var(--field)}
+.pick input:checked+span{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:26px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--blue);color:var(--on-blue);border:0;border-radius:12px;padding:14px 22px;font-weight:700;font-size:1.02rem}
+.btn:hover{filter:brightness(1.08)}
+.ghost{background:none;border:0;color:var(--muted);font-weight:600;padding:12px 6px;text-decoration:underline;text-underline-offset:3px}
+.add{align-self:flex-start;background:none;border:1.5px dashed var(--line);color:var(--ink);border-radius:12px;padding:11px 16px;font-weight:600}
+.privacy{color:var(--muted);font-size:.85rem;margin:16px 0 0}
+.done h2{font-size:1.9rem}
+.next{margin:18px 0 0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px}
+.draft{margin-top:20px;border:1.5px dashed var(--line);border-radius:12px;padding:12px 14px;font-size:.9rem;color:var(--muted)}
+footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
+@media (max-width:880px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .pitch{position:static}
+  .jump{display:inline-block;align-self:flex-start;text-decoration:none}
+}
+@media (prefers-reduced-motion:no-preference){.btn{transition:filter .15s}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="logo" href="#top" aria-label="Small.AI">small<i></i>ai</a>
+    <span class="chip">About 10 minutes</span>
+  </div>
+
+  <div class="grid" id="top">
+    <section class="pitch">
+      <h1>Get AI doing real work in your business.</h1>
+      <p class="lede">Small.AI helps small businesses get started with AI. We find the jobs where it will save you time, then set it up for you.</p>
+      <ul class="promises">
+        <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div><strong>We set it up for you</strong><span>You don't need to learn the tech. We do the install and stay with you through the first week.</span></div></li>
+        <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div><strong>Nothing to buy from us</strong><span>We don't sell software or take commissions. We work with the tools you already pay for.</span></div></li>
+        <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div><strong>We start where the hours are</strong><span>We look for the two or three jobs that eat your week and begin there, so you get value quickly.</span></div></li>
+        <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div><strong>You stay in charge</strong><span>Nothing goes to a customer until someone in your business has checked it.</span></div></li>
+      </ul>
+      <a class="btn jump" href="#survey">Start the survey</a>
+    </section>
+
+    <section class="card" id="survey">
+      <form id="form" novalidate>
+        <h2>Fill out a short survey to get started</h2>
+        <p class="sub">Answer in your own words. No tech knowledge needed. We'll come back with the top 3 places AI could save you time.</p>
+        <div class="bars" aria-hidden="true"><b></b><b></b><b></b><b></b></div>
+        <p class="stepname" id="stepname" aria-live="polite"></p>
+
+        <fieldset data-step="Your business">
+          <legend>Your business</legend>
+          <div class="f"><label for="biz_name">What's the business called?</label><input type="text" id="biz_name" name="biz_name" required autocomplete="organization"></div>
+          <div class="f"><label for="biz_what">In a sentence, what do you do and for whom?</label><textarea id="biz_what" name="biz_what" required placeholder="e.g. We sell and manage homes for owners in Brisbane's inner west"></textarea></div>
+          <div class="f"><label for="biz_where">Where are you based, and what area do you cover?</label><input type="text" id="biz_where" name="biz_where" required></div>
+          <div class="f"><label for="biz_customers">Who are your customers?</label><small>If there's more than one type, name each.</small><input type="text" id="biz_customers" name="biz_customers" required placeholder="e.g. landlords, tenants, sellers, buyers"></div>
+        </fieldset>
+
+        <fieldset data-step="Where your time goes" hidden>
+          <legend>Where your time goes</legend>
+          <p class="intro">Think about the last month. What did you spend your time on that you wish you hadn't? It could be a painful administrative task, something that takes too long, or just something that keeps you from doing the things that matter most to your business.</p>
+          <div id="tasks"></div>
+          <button type="button" class="add" id="addtask">Add another job</button>
+        </fieldset>
+
+        <fieldset data-step="Your tools" hidden>
+          <legend>Your tools</legend>
+          <div class="f"><label for="tools">Walk us through the tools and systems you use each day.</label>
+            <small>Think email (Gmail or Outlook?), spreadsheets and documents (and where they're saved), how you message customers, how you send invoices and pay bills, and any system the business runs on, like a CRM or job system.</small>
+            <textarea id="tools" name="tools" required style="min-height:140px"></textarea></div>
+        </fieldset>
+
+        <fieldset data-step="AI today, and where to reach you" hidden>
+          <legend>AI today</legend>
+          <div class="f"><span class="lab" id="ai_lab">Do you pay for Claude or ChatGPT today?</span>
+            <div class="picks" role="radiogroup" aria-labelledby="ai_lab">
+              <label class="pick"><input type="radio" name="ai_sub" id="ai_sub_no" value="No" required><span>No</span></label>
+              <label class="pick"><input type="radio" name="ai_sub" id="ai_sub_claude" value="Claude"><span>Claude</span></label>
+              <label class="pick"><input type="radio" name="ai_sub" id="ai_sub_chatgpt" value="ChatGPT"><span>ChatGPT</span></label>
+              <label class="pick"><input type="radio" name="ai_sub" id="ai_sub_both" value="Both"><span>Both</span></label>
+              <label class="pick"><input type="radio" name="ai_sub" id="ai_sub_other" value="Something else or not sure"><span>Something else / not sure</span></label>
+            </div></div>
+          <div class="f"><label for="ai_use">What do you use AI for now, if anything? <span class="opt">Optional</span></label><input type="text" id="ai_use" name="ai_use"></div>
+          <div class="f"><label for="your_name">Your name</label><input type="text" id="your_name" name="your_name" required autocomplete="name"></div>
+          <div class="f"><label for="your_email">Best email for your top 3</label><input type="email" id="your_email" name="your_email" required autocomplete="email" inputmode="email"></div>
+        </fieldset>
+
+        <div class="nav">
+          <button type="button" class="ghost" id="back" hidden>Back</button>
+          <span></span>
+          <button type="submit" class="btn" id="next">Next</button>
+        </div>
+        <p class="privacy">Your answers go only to Small.AI and are used only to work out how we can help.</p>
+      </form>
+
+      <div class="done" id="done" hidden>
+        <h2 id="done_title" tabindex="-1">Answers sent. Thank you.</h2>
+        <p class="sub" style="margin-bottom:0">What happens next:</p>
+        <ol class="next">
+          <li>Adrian reads your answers.</li>
+          <li>You get an email with the top 3 places AI could save you time.</li>
+          <li>If you like them, we book a video call and set them up together.</li>
+        </ol>
+        <div class="draft" id="draftnote" hidden>Draft page: this version isn't connected yet, so nothing was sent anywhere.</div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <span>Small.AI is run by Adrian Grabicki in Sydney.</span>
+    <span>This page was built in an afternoon, with AI.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // Where answers are posted. Empty = draft mode (nothing is sent).
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbyMgEvlTKfk1gzUqxkgBHUD9ezR0d_Ck2gLyNRA3baE7H9TNXYuyI72RuKaI3DQbiPw8g/exec";
+  var KEY = "smallai-draft-a";
+  var form = document.getElementById("form");
+  var steps = Array.prototype.slice.call(form.querySelectorAll("fieldset"));
+  var bars = form.querySelectorAll(".bars b");
+  var stepname = document.getElementById("stepname");
+  var back = document.getElementById("back"), next = document.getElementById("next");
+  var tasksEl = document.getElementById("tasks"), addBtn = document.getElementById("addtask");
+  var cur = 0, shownTasks = 1;
+
+  function taskHtml(n){
+    var r = n === 1 ? " required" : "";
+    var head = n === 1 ? "" : "<h3>Job " + n + "</h3>";
+    return '<div class="task" data-task="' + n + '"' + (n === 1 ? ' style="border-top:0;padding-top:0"' : "") + ">" + head +
+      '<div class="f"><label for="t' + n + '_what">' + (n === 1 ? "What's the job?" : "What's the next one?") + '</label><textarea id="t' + n + '_what" name="t' + n + '_what"' + r + ' placeholder="e.g. Chasing customers who haven\'t paid their invoice"></textarea></div>' +
+      '<div class="f"><label for="t' + n + '_who">Who usually does it?</label><input type="text" id="t' + n + '_who" name="t' + n + '_who"' + r + "></div>" +
+      '<div class="f"><label for="t' + n + '_time">Roughly how long does it take, and how often?</label><input type="text" id="t' + n + '_time" name="t' + n + '_time"' + r + ' placeholder="e.g. an hour a day, or 15 minutes about 20 times a week"></div>' +
+      '<div class="f"><label for="t' + n + '_how">Walk us through it.</label><small>What kicks it off, what tools or systems do you use, and what comes out at the end? If there\'s a price or dollar figure in it, tell us where that number comes from.</small><textarea id="t' + n + '_how" name="t' + n + '_how"' + r + "></textarea></div>" +
+      '<div class="f"><label for="t' + n + '_wrong">What goes wrong with it today? <span class="opt">Optional</span></label><input type="text" id="t' + n + '_wrong" name="t' + n + '_wrong"></div>' +
+      "</div>";
+  }
+  tasksEl.innerHTML = taskHtml(1) + taskHtml(2) + taskHtml(3);
+  function showTasks(){
+    tasksEl.querySelectorAll(".task").forEach(function(t){ t.hidden = Number(t.dataset.task) > shownTasks; });
+    addBtn.hidden = shownTasks >= 3;
+  }
+  addBtn.addEventListener("click", function(){
+    shownTasks = Math.min(3, shownTasks + 1); showTasks(); save();
+    var el = document.getElementById("t" + shownTasks + "_what"); if (el) el.focus();
+  });
+
+  function data(){
+    var o = {};
+    form.querySelectorAll("input,textarea").forEach(function(el){
+      if (el.type === "radio") { if (el.checked) o[el.name] = el.value; }
+      else if (el.value.trim()) o[el.name] = el.value.trim();
+    });
+    return o;
+  }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify({d:data(), s:cur, t:shownTasks})); } catch(e){} }
+  function restore(){
+    try {
+      var v = JSON.parse(localStorage.getItem(KEY) || "null"); if (!v) return;
+      Object.keys(v.d || {}).forEach(function(k){
+        var els = form.querySelectorAll('[name="' + k + '"]');
+        els.forEach(function(el){ if (el.type === "radio") el.checked = el.value === v.d[k]; else el.value = v.d[k]; });
+      });
+      shownTasks = Math.max(1, Math.min(3, v.t || 1));
+    } catch(e){}
+  }
+
+  function clearMsgs(scope){
+    scope.querySelectorAll(".msg").forEach(function(m){ m.remove(); });
+    scope.querySelectorAll(".bad").forEach(function(b){ b.classList.remove("bad"); });
+  }
+  function flag(el, text){
+    var f = el.closest(".f"); if (!f || f.querySelector(".msg")) return;
+    f.classList.add("bad");
+    var m = document.createElement("div"); m.className = "msg"; m.textContent = text; f.appendChild(m);
+  }
+  function valid(){
+    var fs = steps[cur], first = null; clearMsgs(fs);
+    fs.querySelectorAll("[required]").forEach(function(el){
+      if (el.closest("[hidden]")) return;
+      var ok = true, text = "Please fill this in.";
+      if (el.type === "radio") { ok = !!form.querySelector('[name="' + el.name + '"]:checked'); text = "Please pick one."; }
+      else if (!el.value.trim()) ok = false;
+      else if (el.type === "email" && !/^\S+@\S+\.\S+$/.test(el.value.trim())) { ok = false; text = "That email doesn't look right. Check for a typo."; }
+      if (!ok) { flag(el, text); if (!first) first = el; }
+    });
+    if (first) first.focus();
+    return !first;
+  }
+  function show(focus){
+    steps.forEach(function(s, i){ s.hidden = i !== cur; });
+    bars.forEach(function(b, i){ b.classList.toggle("on", i <= cur); });
+    stepname.textContent = "Step " + (cur + 1) + " of " + steps.length + ": " + steps[cur].dataset.step;
+    back.hidden = cur === 0;
+    next.textContent = cur === steps.length - 1 ? "Send my answers" : "Next";
+    showTasks();
+    if (focus) {
+      var el = steps[cur].querySelector("input,textarea"); if (el) el.focus({preventScroll:true});
+      document.getElementById("survey").scrollIntoView({block:"start", behavior:"auto"});
+    }
+  }
+  back.addEventListener("click", function(){ if (cur > 0) { cur--; show(true); save(); } });
+  form.addEventListener("input", save);
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!valid()) return;
+    if (cur < steps.length - 1) { cur++; show(true); save(); return; }
+    var payload = data(); payload.page_version = "1.0"; payload.submitted = new Date().toISOString();
+    next.disabled = true; next.textContent = "Sending…";
+    var finish = function(sent){
+      form.hidden = true;
+      var done = document.getElementById("done"); done.hidden = false;
+      var t = document.getElementById("done_title");
+      t.textContent = sent ? "Answers sent. Thank you" + (payload.your_name ? ", " + payload.your_name.split(" ")[0] : "") + "." : "That's everything. Thank you" + (payload.your_name ? ", " + payload.your_name.split(" ")[0] : "") + ".";
+      document.getElementById("draftnote").hidden = sent;
+      try { localStorage.removeItem(KEY); } catch(e){}
+      t.focus();
+    };
+    if (!ENDPOINT) { finish(false); return; }
+    fetch(ENDPOINT, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(payload)})
+      .then(function(r){ if (!r.ok) throw new Error(); return r.json(); })
+      .then(function(j){ if (!j || j.ok !== true) throw new Error(); finish(true); })
+      .catch(function(){
+        next.disabled = false; next.textContent = "Send my answers";
+        var m = document.createElement("div"); m.className = "msg"; m.textContent = "Your answers didn't send. Check your connection and press Send my answers again.";
+        clearMsgs(form.querySelector(".nav")); form.querySelector(".nav").appendChild(m);
+      });
+  });
+
+  restore(); show(false);
+})();
+</script>
+</body>
+</html>
