@@ -43,8 +43,10 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(2.3rem,4.7vw,3.7re
 .lede{font-size:1.15rem;color:var(--muted);margin:0;max-width:34em}
 .stat{margin:0;padding-block:18px;border-block:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
 .stat blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:1.22rem;line-height:1.25;letter-spacing:-.01em;text-wrap:balance}
-.stat figcaption{color:var(--muted);font-size:.85rem}
-.stat a{color:inherit;text-underline-offset:3px}
+.stat sup{font-size:.55em;font-weight:600;margin-left:2px}
+.stat sup a{color:var(--muted);text-decoration:none}
+.fn{margin:14px 0 0;color:var(--muted);font-size:.7rem;line-height:1.4}
+.fn a{color:inherit;text-underline-offset:2px}
 .promises{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
 .promises li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:14px;align-items:start}
 .promises svg{width:26px;height:26px;margin-top:2px}
@@ -110,8 +112,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
       <h1>Get AI doing real work in your business.</h1>
       <p class="lede">small.ai helps small businesses get started with AI. We find the tasks where it will save you time, then set it up for you.</p>
       <figure class="stat">
-        <blockquote>76% of small businesses use AI. Only 14% have fully integrated it into their core operations.</blockquote>
-        <figcaption>Goldman Sachs 10,000 Small Businesses Voices, <a href="https://www.goldmansachs.com/community-impact/10000-small-businesses-voices/insights/ai-presents-a-major-opportunity-for-small-businesses" target="_blank" rel="noopener">survey of 1,256 US owners</a>, 2026</figcaption>
+        <blockquote>76% of small businesses use AI. Only 14% have fully integrated it into their core operations.<sup><a href="#source" aria-label="Source, in the footnote">1</a></sup></blockquote>
       </figure>
       <ul class="promises">
         <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -121,7 +122,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
         <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <div><strong>We focus on the value</strong><span>We'll work with you to figure out the best ways you can integrate AI into your business.</span></div></li>
         <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div><strong>You stay in charge</strong><span>AI will save you a ton of time and money, but you stay in control.</span></div></li>
+          <div><strong>You stay in charge</strong><span>AI can save you a ton of time and money, but you stay in control.</span></div></li>
       </ul>
       <a class="btn jump" href="#survey">Start the survey</a>
     </section>
@@ -196,6 +197,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
     <span>small.ai is run by Adrian Grabicki in Sydney.</span>
     <span>This page was built in an afternoon, with AI.</span>
   </footer>
+  <p class="fn" id="source"><sup>1</sup> <a href="https://www.goldmansachs.com/community-impact/10000-small-businesses-voices/insights/ai-presents-a-major-opportunity-for-small-businesses" target="_blank" rel="noopener">Goldman Sachs 10,000 Small Businesses Voices</a>, survey of 1,256 US small business owners, January to February 2026.</p>
 </div>
 
 <script>
@@ -295,7 +297,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
     e.preventDefault();
     if (!valid()) return;
     if (cur < steps.length - 1) { cur++; show(true); save(); return; }
-    var payload = data(); payload.page_version = "1.1"; payload.submitted = new Date().toISOString();
+    var payload = data(); payload.page_version = "1.2"; payload.submitted = new Date().toISOString();
     next.disabled = true; next.textContent = "Sending…";
     var finish = function(sent){
       form.hidden = true;
