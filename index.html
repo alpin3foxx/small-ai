@@ -10,7 +10,7 @@
 <style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: pitch on the left, survey card on the right and visible in the first frame; one column on phones. */
+/* Layout: pitch on the left, survey card on the right and visible in the first frame; one column on phones. The survey is one short page: eight questions, no steps. */
 :root{
   --paper:#F1F4F9; --card:#FFFFFF; --ink:#101B33; --muted:#55607A; --line:#D3DAE7;
   --blue:#2346D6; --on-blue:#FFFFFF; --hivis:#FFD43A; --on-hivis:#101B33; --error:#B42318;
@@ -55,13 +55,10 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(2.3rem,4.7vw,3.7re
 .jump{display:none}
 .card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:clamp(20px,3.2vw,36px);min-width:0;scroll-margin-top:16px}
 .card h2{font-family:var(--display);font-weight:700;font-size:1.6rem;letter-spacing:-.02em;line-height:1.15;margin:0 0 6px;text-wrap:balance}
-.card .sub{color:var(--muted);margin:0 0 20px;font-size:1rem}
-.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px}
-.bars b{height:6px;border-radius:3px;background:var(--line)}
-.bars b.on{background:var(--blue)}
-.stepname{font-size:.9rem;color:var(--muted);font-weight:600;margin:0 0 22px}
-fieldset{border:0;padding:0;margin:0;min-width:0;display:flex;flex-direction:column;gap:18px}
-legend{padding:0;font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;margin-bottom:4px}
+.card .sub{color:var(--muted);margin:0 0 24px;font-size:1rem}
+fieldset{border:0;border-top:1px solid var(--line);padding:4px 0 0;margin:0;min-width:0;display:flex;flex-direction:column;gap:18px}
+fieldset+fieldset{margin-top:30px}
+legend{padding:0 12px 0 0;font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;margin-bottom:4px}
 .intro{color:var(--muted);margin:0;font-size:1rem}
 .f{display:flex;flex-direction:column;gap:6px;min-width:0}
 .f label,.f .lab{font-weight:600;font-size:1rem}
@@ -69,6 +66,7 @@ legend{padding:0;font-family:var(--display);font-weight:700;font-size:1.25rem;le
 .opt{font-weight:500;color:var(--muted);font-size:.85rem}
 input[type=text],input[type=email],textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:11px;padding:12px 14px}
 textarea{min-height:92px;resize:vertical;line-height:1.45}
+textarea.short{min-height:68px}
 input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
 input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible,.pick input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
 .bad input,.bad textarea{border-color:var(--error)}
@@ -80,11 +78,10 @@ input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible,
 .pick input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
 .pick span{display:block;border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:600;font-size:.95rem;background:var(--field)}
 .pick input:checked+span{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
-.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:26px;flex-wrap:wrap}
+.nav{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:28px}
 button{font:inherit;cursor:pointer}
 .btn{background:var(--blue);color:var(--on-blue);border:0;border-radius:12px;padding:14px 22px;font-weight:700;font-size:1.02rem}
 .btn:hover{filter:brightness(1.08)}
-.ghost{background:none;border:0;color:var(--muted);font-weight:600;padding:12px 6px;text-decoration:underline;text-underline-offset:3px}
 .add{align-self:flex-start;background:none;border:1.5px dashed var(--line);color:var(--ink);border-radius:12px;padding:11px 16px;font-weight:600}
 .privacy{color:var(--muted);font-size:.85rem;margin:16px 0 0}
 .done h2{font-size:1.9rem}
@@ -104,7 +101,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
 <div class="wrap">
   <div class="top">
     <a class="logo" href="#top" aria-label="small.ai">small<i></i>ai</a>
-    <span class="chip">About 10 minutes</span>
+    <span class="chip">A few minutes</span>
   </div>
 
   <div class="grid" id="top">
@@ -131,33 +128,24 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
       <form id="form" novalidate>
         <h2>Fill out a short survey to get started</h2>
         <p class="sub">Answer in your own words. No tech knowledge needed. We'll come back with the top 3 tasks where AI could save you time.</p>
-        <div class="bars" aria-hidden="true"><b></b><b></b><b></b><b></b></div>
-        <p class="stepname" id="stepname" aria-live="polite"></p>
-
-        <fieldset data-step="Your business">
+        <fieldset>
           <legend>Your business</legend>
           <div class="f"><label for="biz_name">What's the business called?</label><input type="text" id="biz_name" name="biz_name" required autocomplete="organization"></div>
-          <div class="f"><label for="biz_what">In a sentence, what do you do and for whom?</label><textarea id="biz_what" name="biz_what" required placeholder="e.g. We sell and manage homes for owners in Brisbane's inner west"></textarea></div>
-          <div class="f"><label for="biz_where">Where are you based, and what area do you cover?</label><input type="text" id="biz_where" name="biz_where" required></div>
-          <div class="f"><label for="biz_customers">Who are your customers?</label><small>If there's more than one type, name each.</small><input type="text" id="biz_customers" name="biz_customers" required placeholder="e.g. landlords, tenants, sellers, buyers"></div>
+          <div class="f"><label for="biz_what">In a sentence, what do you do and for whom?</label><textarea class="short" id="biz_what" name="biz_what" required placeholder="e.g. We sell and manage homes for owners in Brisbane's inner west"></textarea></div>
         </fieldset>
 
-        <fieldset data-step="Where your time goes" hidden>
+        <fieldset>
           <legend>Where your time goes</legend>
           <p class="intro">Think about the last month. What did you spend your time on that you wish you hadn't? It could be a painful administrative task, something that takes too long, or just something that keeps you from doing the things that matter most to your business.</p>
           <div id="tasks"></div>
           <button type="button" class="add" id="addtask">Add another task</button>
         </fieldset>
 
-        <fieldset data-step="Your tools" hidden>
+        <fieldset>
           <legend>Your tools</legend>
           <div class="f"><label for="tools">What tools and systems do you use day to day?</label>
-            <small>For example: email (Gmail, Outlook), spreadsheets and documents and where you keep them, how you message customers, how you invoice and pay bills, and any system you run the business on, such as a CRM or booking system. A rough list is fine.</small>
-            <textarea id="tools" name="tools" required style="min-height:140px"></textarea></div>
-        </fieldset>
-
-        <fieldset data-step="AI today, and where to reach you" hidden>
-          <legend>AI today</legend>
+            <small>For example: Gmail or Outlook, spreadsheets, how you invoice, and any system you run the business on. A rough list is fine.</small>
+            <textarea id="tools" name="tools" required></textarea></div>
           <div class="f"><span class="lab" id="ai_lab">Which AI tools do you pay for today?</span><small>Tick any that apply.</small>
             <div class="picks" role="group" aria-labelledby="ai_lab">
               <label class="pick"><input type="checkbox" name="ai_sub" id="ai_sub_none" value="None"><span>None</span></label>
@@ -167,15 +155,16 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
               <label class="pick"><input type="checkbox" name="ai_sub" id="ai_sub_other" value="Something else"><span>Something else</span></label>
               <label class="pick"><input type="checkbox" name="ai_sub" id="ai_sub_unsure" value="Not sure"><span>Not sure</span></label>
             </div></div>
-          <div class="f"><label for="ai_use">What do you use AI for now, if anything? <span class="opt">Optional</span></label><input type="text" id="ai_use" name="ai_use"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Where to reach you</legend>
           <div class="f"><label for="your_name">Your name</label><input type="text" id="your_name" name="your_name" required autocomplete="name"></div>
           <div class="f"><label for="your_email">Best email, so we can reach out to talk about your top 3 tasks</label><input type="email" id="your_email" name="your_email" required autocomplete="email" inputmode="email"></div>
         </fieldset>
 
         <div class="nav">
-          <button type="button" class="ghost" id="back" hidden>Back</button>
-          <span></span>
-          <button type="submit" class="btn" id="next">Next</button>
+          <button type="submit" class="btn" id="next">Send my answers</button>
         </div>
         <p class="privacy">Your answers go only to small.ai and are used only to work out how we can help.</p>
       </form>
@@ -185,8 +174,8 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
         <p class="sub" style="margin-bottom:0">What happens next:</p>
         <ol class="next">
           <li>Adrian reads your answers.</li>
-          <li>You get an email with the top 3 tasks where AI could save you time.</li>
-          <li>If you like them, we book a video call and set them up together.</li>
+          <li>You get an email with the top 3 tasks where AI could save you time, plus a few quick questions about them.</li>
+          <li>If you like them, we agree a time and set them up together on a video call.</li>
         </ol>
         <div class="draft" id="draftnote" hidden>Draft page: this version isn't connected yet, so nothing was sent anywhere.</div>
       </div>
@@ -206,22 +195,17 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbyMgEvlTKfk1gzUqxkgBHUD9ezR0d_Ck2gLyNRA3baE7H9TNXYuyI72RuKaI3DQbiPw8g/exec";
   var KEY = "smallai-draft-a";
   var form = document.getElementById("form");
-  var steps = Array.prototype.slice.call(form.querySelectorAll("fieldset"));
-  var bars = form.querySelectorAll(".bars b");
-  var stepname = document.getElementById("stepname");
-  var back = document.getElementById("back"), next = document.getElementById("next");
+  var next = document.getElementById("next");
   var tasksEl = document.getElementById("tasks"), addBtn = document.getElementById("addtask");
-  var cur = 0, shownTasks = 1;
+  var shownTasks = 1;
 
+  // One task is required. Tasks 2 and 3 are optional and appear with "Add another task".
   function taskHtml(n){
     var r = n === 1 ? " required" : "";
     var head = n === 1 ? "" : "<h3>Task " + n + "</h3>";
     return '<div class="task" data-task="' + n + '"' + (n === 1 ? ' style="border-top:0;padding-top:0"' : "") + ">" + head +
       '<div class="f"><label for="t' + n + '_what">' + (n === 1 ? "What's the task?" : "What's the next one?") + '</label><textarea id="t' + n + '_what" name="t' + n + '_what"' + r + ' placeholder="e.g. Chasing customers who haven\'t paid their invoice"></textarea></div>' +
-      '<div class="f"><label for="t' + n + '_who">Who usually does it?</label><input type="text" id="t' + n + '_who" name="t' + n + '_who"' + r + "></div>" +
       '<div class="f"><label for="t' + n + '_time">Roughly how long does it take, and how often?</label><input type="text" id="t' + n + '_time" name="t' + n + '_time"' + r + ' placeholder="e.g. an hour a day, or 15 minutes about 20 times a week"></div>' +
-      '<div class="f"><label for="t' + n + '_how">Walk us through it.</label><small>What kicks it off, what tools or systems do you use, and what comes out at the end? If there\'s a price or dollar figure in it, tell us where that number comes from.</small><textarea id="t' + n + '_how" name="t' + n + '_how"' + r + "></textarea></div>" +
-      '<div class="f"><label for="t' + n + '_wrong">What goes wrong with it today? <span class="opt">Optional</span></label><input type="text" id="t' + n + '_wrong" name="t' + n + '_wrong"></div>' +
       "</div>";
   }
   tasksEl.innerHTML = taskHtml(1) + taskHtml(2) + taskHtml(3);
@@ -242,7 +226,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
     });
     return o;
   }
-  function save(){ try { localStorage.setItem(KEY, JSON.stringify({d:data(), s:cur, t:shownTasks})); } catch(e){} }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify({d:data(), t:shownTasks})); } catch(e){} }
   function restore(){
     try {
       var v = JSON.parse(localStorage.getItem(KEY) || "null"); if (!v) return;
@@ -257,47 +241,46 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
   function clearMsgs(scope){
     scope.querySelectorAll(".msg").forEach(function(m){ m.remove(); });
     scope.querySelectorAll(".bad").forEach(function(b){ b.classList.remove("bad"); });
+    if (scope.classList && scope.classList.contains("bad")) scope.classList.remove("bad");
   }
   function flag(el, text){
     var f = el.closest(".f"); if (!f || f.querySelector(".msg")) return;
     f.classList.add("bad");
     var m = document.createElement("div"); m.className = "msg"; m.textContent = text; f.appendChild(m);
   }
+  // Checks every question in page order and puts the cursor on the first one that needs attention.
   function valid(){
-    var fs = steps[cur], first = null; clearMsgs(fs);
-    var picks = fs.querySelector('[name="ai_sub"]');
-    if (picks && !fs.querySelector('[name="ai_sub"]:checked')) { flag(picks, "Please tick at least one."); first = picks; }
-    fs.querySelectorAll("[required]").forEach(function(el){
-      if (el.closest("[hidden]")) return;
+    var first = null; clearMsgs(form);
+    form.querySelectorAll(".f").forEach(function(f){
+      if (f.closest("[hidden]")) return;
+      var pick = f.querySelector('[name="ai_sub"]');
+      if (pick) {
+        if (!f.querySelector('[name="ai_sub"]:checked')) { flag(pick, "Please tick at least one."); if (!first) first = pick; }
+        return;
+      }
+      var el = f.querySelector("[required]"); if (!el) return;
       var ok = true, text = "Please fill this in.";
       if (!el.value.trim()) ok = false;
       else if (el.type === "email" && !/^\S+@\S+\.\S+$/.test(el.value.trim())) { ok = false; text = "That email doesn't look right. Check for a typo."; }
       if (!ok) { flag(el, text); if (!first) first = el; }
     });
-    if (first) first.focus();
+    if (first) { first.focus({preventScroll:true}); first.closest(".f").scrollIntoView({block:"center", behavior:"auto"}); }
     return !first;
   }
-  function show(focus){
-    steps.forEach(function(s, i){ s.hidden = i !== cur; });
-    bars.forEach(function(b, i){ b.classList.toggle("on", i <= cur); });
-    stepname.textContent = "Step " + (cur + 1) + " of " + steps.length + ": " + steps[cur].dataset.step;
-    back.hidden = cur === 0;
-    next.textContent = cur === steps.length - 1 ? "Send my answers" : "Next";
-    showTasks();
-    if (focus) {
-      var el = steps[cur].querySelector("input,textarea"); if (el) el.focus({preventScroll:true});
-      document.getElementById("survey").scrollIntoView({block:"start", behavior:"auto"});
-    }
-  }
-  back.addEventListener("click", function(){ if (cur > 0) { cur--; show(true); save(); } });
-  form.addEventListener("input", save);
-  form.addEventListener("change", save);
-  form.addEventListener("change", function(e){ var f = e.target.closest && e.target.closest(".f.bad"); if (f && e.target.name === "ai_sub") { clearMsgs(f); f.classList.remove("bad"); } });
+  form.addEventListener("input", function(e){
+    save();
+    var f = e.target.closest && e.target.closest(".f.bad");
+    if (f && e.target.value && e.target.value.trim()) clearMsgs(f);
+  });
+  form.addEventListener("change", function(e){
+    save();
+    var f = e.target.closest && e.target.closest(".f.bad");
+    if (f && e.target.name === "ai_sub") clearMsgs(f);
+  });
   form.addEventListener("submit", function(e){
     e.preventDefault();
-    if (!valid()) return;
-    if (cur < steps.length - 1) { cur++; show(true); save(); return; }
-    var payload = data(); payload.page_version = "1.2"; payload.submitted = new Date().toISOString();
+    if (next.disabled || !valid()) return;
+    var payload = data(); payload.page_version = "1.3"; payload.submitted = new Date().toISOString();
     next.disabled = true; next.textContent = "Sending…";
     var finish = function(sent){
       form.hidden = true;
@@ -306,7 +289,8 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
       t.textContent = sent ? "Answers sent. Thank you" + (payload.your_name ? ", " + payload.your_name.split(" ")[0] : "") + "." : "That's everything. Thank you" + (payload.your_name ? ", " + payload.your_name.split(" ")[0] : "") + ".";
       document.getElementById("draftnote").hidden = sent;
       try { localStorage.removeItem(KEY); } catch(e){}
-      t.focus();
+      t.focus({preventScroll:true});
+      document.getElementById("survey").scrollIntoView({block:"start", behavior:"auto"});
     };
     if (!ENDPOINT) { finish(false); return; }
     fetch(ENDPOINT, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(payload)})
@@ -319,7 +303,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
       });
   });
 
-  restore(); show(false);
+  restore(); showTasks();
 })();
 </script>
 </body>
