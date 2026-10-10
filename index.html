@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="description" content="Small.AI helps small businesses get started with AI. Fill out a short survey to get started.">
-<title>Small.AI</title>
+<meta name="description" content="small.ai helps small businesses get started with AI. Fill out a short survey to get started.">
+<title>small.ai</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101B33'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23FFD43A'/%3E%3C/svg%3E">
 <style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap">
@@ -38,9 +38,13 @@ body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:
 .logo i{display:inline-block;width:.34em;height:.34em;border-radius:50%;background:var(--hivis);margin:0 .07em;box-shadow:0 0 0 2px var(--ink)}
 .chip{background:var(--hivis);color:var(--on-hivis);font-weight:700;font-size:.85rem;padding:6px 12px;border-radius:999px;white-space:nowrap}
 .grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,64px);align-items:start}
-.pitch{position:sticky;top:calc(env(safe-area-inset-top,0px) + 28px);display:flex;flex-direction:column;gap:28px;min-width:0}
+.pitch{display:flex;flex-direction:column;gap:28px;min-width:0}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(2.3rem,4.7vw,3.7rem);line-height:1.02;letter-spacing:-.025em;margin:0;text-wrap:balance}
 .lede{font-size:1.15rem;color:var(--muted);margin:0;max-width:34em}
+.stat{margin:0;padding-block:18px;border-block:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.stat blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:1.22rem;line-height:1.25;letter-spacing:-.01em;text-wrap:balance}
+.stat figcaption{color:var(--muted);font-size:.85rem}
+.stat a{color:inherit;text-underline-offset:3px}
 .promises{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
 .promises li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:14px;align-items:start}
 .promises svg{width:26px;height:26px;margin-top:2px}
@@ -85,9 +89,9 @@ button{font:inherit;cursor:pointer}
 .next{margin:18px 0 0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px}
 .draft{margin-top:20px;border:1.5px dashed var(--line);border-radius:12px;padding:12px 14px;font-size:.9rem;color:var(--muted)}
 footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
+@media (min-width:881px) and (min-height:960px){.pitch{position:sticky;top:calc(env(safe-area-inset-top,0px) + 28px)}}
 @media (max-width:880px){
   .grid{grid-template-columns:minmax(0,1fr)}
-  .pitch{position:static}
   .jump{display:inline-block;align-self:flex-start;text-decoration:none}
 }
 @media (prefers-reduced-motion:no-preference){.btn{transition:filter .15s}}
@@ -97,23 +101,27 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
 <body>
 <div class="wrap">
   <div class="top">
-    <a class="logo" href="#top" aria-label="Small.AI">small<i></i>ai</a>
+    <a class="logo" href="#top" aria-label="small.ai">small<i></i>ai</a>
     <span class="chip">About 10 minutes</span>
   </div>
 
   <div class="grid" id="top">
     <section class="pitch">
       <h1>Get AI doing real work in your business.</h1>
-      <p class="lede">Small.AI helps small businesses get started with AI. We find the jobs where it will save you time, then set it up for you.</p>
+      <p class="lede">small.ai helps small businesses get started with AI. We find the tasks where it will save you time, then set it up for you.</p>
+      <figure class="stat">
+        <blockquote>76% of small businesses use AI. Only 14% have fully integrated it into their core operations.</blockquote>
+        <figcaption>Goldman Sachs 10,000 Small Businesses Voices, <a href="https://www.goldmansachs.com/community-impact/10000-small-businesses-voices/insights/ai-presents-a-major-opportunity-for-small-businesses" target="_blank" rel="noopener">survey of 1,256 US owners</a>, 2026</figcaption>
+      </figure>
       <ul class="promises">
         <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div><strong>We set it up for you</strong><span>You don't need to learn the tech. We do the install and stay with you through the first week.</span></div></li>
+          <div><strong>We get you started</strong><span>You won't have to learn the tech. We'll set up the basics, and you can focus on running your business.</span></div></li>
         <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div><strong>Nothing to buy from us</strong><span>We don't sell software or take commissions. We work with the tools you already pay for.</span></div></li>
+          <div><strong>We care about small businesses, not big software companies</strong><span>We don't sell software or take commissions. We work with the tools you already pay for.</span></div></li>
         <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div><strong>We start where the hours are</strong><span>We look for the two or three jobs that eat your week and begin there, so you get value quickly.</span></div></li>
+          <div><strong>We focus on the value</strong><span>We'll work with you to figure out the best ways you can integrate AI into your business.</span></div></li>
         <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="var(--hivis)"/><path d="M7.5 13.5l3.6 3.6 7.4-8" fill="none" stroke="var(--on-hivis)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div><strong>You stay in charge</strong><span>Nothing goes to a customer until someone in your business has checked it.</span></div></li>
+          <div><strong>You stay in charge</strong><span>AI will save you a ton of time and money, but you stay in control.</span></div></li>
       </ul>
       <a class="btn jump" href="#survey">Start the survey</a>
     </section>
@@ -121,7 +129,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
     <section class="card" id="survey">
       <form id="form" novalidate>
         <h2>Fill out a short survey to get started</h2>
-        <p class="sub">Answer in your own words. No tech knowledge needed. We'll come back with the top 3 places AI could save you time.</p>
+        <p class="sub">Answer in your own words. No tech knowledge needed. We'll come back with the top 3 tasks where AI could save you time.</p>
         <div class="bars" aria-hidden="true"><b></b><b></b><b></b><b></b></div>
         <p class="stepname" id="stepname" aria-live="polite"></p>
 
@@ -137,29 +145,30 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
           <legend>Where your time goes</legend>
           <p class="intro">Think about the last month. What did you spend your time on that you wish you hadn't? It could be a painful administrative task, something that takes too long, or just something that keeps you from doing the things that matter most to your business.</p>
           <div id="tasks"></div>
-          <button type="button" class="add" id="addtask">Add another job</button>
+          <button type="button" class="add" id="addtask">Add another task</button>
         </fieldset>
 
         <fieldset data-step="Your tools" hidden>
           <legend>Your tools</legend>
-          <div class="f"><label for="tools">Walk us through the tools and systems you use each day.</label>
-            <small>Think email (Gmail or Outlook?), spreadsheets and documents (and where they're saved), how you message customers, how you send invoices and pay bills, and any system the business runs on, like a CRM or job system.</small>
+          <div class="f"><label for="tools">What tools and systems do you use day to day?</label>
+            <small>For example: email (Gmail, Outlook), spreadsheets and documents and where you keep them, how you message customers, how you invoice and pay bills, and any system you run the business on, such as a CRM or booking system. A rough list is fine.</small>
             <textarea id="tools" name="tools" required style="min-height:140px"></textarea></div>
         </fieldset>
 
         <fieldset data-step="AI today, and where to reach you" hidden>
           <legend>AI today</legend>
-          <div class="f"><span class="lab" id="ai_lab">Do you pay for Claude or ChatGPT today?</span>
-            <div class="picks" role="radiogroup" aria-labelledby="ai_lab">
-              <label class="pick"><input type="radio" name="ai_sub" id="ai_sub_no" value="No" required><span>No</span></label>
-              <label class="pick"><input type="radio" name="ai_sub" id="ai_sub_claude" value="Claude"><span>Claude</span></label>
-              <label class="pick"><input type="radio" name="ai_sub" id="ai_sub_chatgpt" value="ChatGPT"><span>ChatGPT</span></label>
-              <label class="pick"><input type="radio" name="ai_sub" id="ai_sub_both" value="Both"><span>Both</span></label>
-              <label class="pick"><input type="radio" name="ai_sub" id="ai_sub_other" value="Something else or not sure"><span>Something else / not sure</span></label>
+          <div class="f"><span class="lab" id="ai_lab">Which AI tools do you pay for today?</span><small>Tick any that apply.</small>
+            <div class="picks" role="group" aria-labelledby="ai_lab">
+              <label class="pick"><input type="checkbox" name="ai_sub" id="ai_sub_none" value="None"><span>None</span></label>
+              <label class="pick"><input type="checkbox" name="ai_sub" id="ai_sub_chatgpt" value="ChatGPT"><span>ChatGPT</span></label>
+              <label class="pick"><input type="checkbox" name="ai_sub" id="ai_sub_claude" value="Claude"><span>Claude</span></label>
+              <label class="pick"><input type="checkbox" name="ai_sub" id="ai_sub_copilot" value="Copilot"><span>Copilot</span></label>
+              <label class="pick"><input type="checkbox" name="ai_sub" id="ai_sub_other" value="Something else"><span>Something else</span></label>
+              <label class="pick"><input type="checkbox" name="ai_sub" id="ai_sub_unsure" value="Not sure"><span>Not sure</span></label>
             </div></div>
           <div class="f"><label for="ai_use">What do you use AI for now, if anything? <span class="opt">Optional</span></label><input type="text" id="ai_use" name="ai_use"></div>
           <div class="f"><label for="your_name">Your name</label><input type="text" id="your_name" name="your_name" required autocomplete="name"></div>
-          <div class="f"><label for="your_email">Best email for your top 3</label><input type="email" id="your_email" name="your_email" required autocomplete="email" inputmode="email"></div>
+          <div class="f"><label for="your_email">Best email, so we can reach out to talk about your top 3 tasks</label><input type="email" id="your_email" name="your_email" required autocomplete="email" inputmode="email"></div>
         </fieldset>
 
         <div class="nav">
@@ -167,7 +176,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
           <span></span>
           <button type="submit" class="btn" id="next">Next</button>
         </div>
-        <p class="privacy">Your answers go only to Small.AI and are used only to work out how we can help.</p>
+        <p class="privacy">Your answers go only to small.ai and are used only to work out how we can help.</p>
       </form>
 
       <div class="done" id="done" hidden>
@@ -175,7 +184,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
         <p class="sub" style="margin-bottom:0">What happens next:</p>
         <ol class="next">
           <li>Adrian reads your answers.</li>
-          <li>You get an email with the top 3 places AI could save you time.</li>
+          <li>You get an email with the top 3 tasks where AI could save you time.</li>
           <li>If you like them, we book a video call and set them up together.</li>
         </ol>
         <div class="draft" id="draftnote" hidden>Draft page: this version isn't connected yet, so nothing was sent anywhere.</div>
@@ -184,7 +193,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
   </div>
 
   <footer>
-    <span>Small.AI is run by Adrian Grabicki in Sydney.</span>
+    <span>small.ai is run by Adrian Grabicki in Sydney.</span>
     <span>This page was built in an afternoon, with AI.</span>
   </footer>
 </div>
@@ -204,9 +213,9 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
 
   function taskHtml(n){
     var r = n === 1 ? " required" : "";
-    var head = n === 1 ? "" : "<h3>Job " + n + "</h3>";
+    var head = n === 1 ? "" : "<h3>Task " + n + "</h3>";
     return '<div class="task" data-task="' + n + '"' + (n === 1 ? ' style="border-top:0;padding-top:0"' : "") + ">" + head +
-      '<div class="f"><label for="t' + n + '_what">' + (n === 1 ? "What's the job?" : "What's the next one?") + '</label><textarea id="t' + n + '_what" name="t' + n + '_what"' + r + ' placeholder="e.g. Chasing customers who haven\'t paid their invoice"></textarea></div>' +
+      '<div class="f"><label for="t' + n + '_what">' + (n === 1 ? "What's the task?" : "What's the next one?") + '</label><textarea id="t' + n + '_what" name="t' + n + '_what"' + r + ' placeholder="e.g. Chasing customers who haven\'t paid their invoice"></textarea></div>' +
       '<div class="f"><label for="t' + n + '_who">Who usually does it?</label><input type="text" id="t' + n + '_who" name="t' + n + '_who"' + r + "></div>" +
       '<div class="f"><label for="t' + n + '_time">Roughly how long does it take, and how often?</label><input type="text" id="t' + n + '_time" name="t' + n + '_time"' + r + ' placeholder="e.g. an hour a day, or 15 minutes about 20 times a week"></div>' +
       '<div class="f"><label for="t' + n + '_how">Walk us through it.</label><small>What kicks it off, what tools or systems do you use, and what comes out at the end? If there\'s a price or dollar figure in it, tell us where that number comes from.</small><textarea id="t' + n + '_how" name="t' + n + '_how"' + r + "></textarea></div>" +
@@ -226,7 +235,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
   function data(){
     var o = {};
     form.querySelectorAll("input,textarea").forEach(function(el){
-      if (el.type === "radio") { if (el.checked) o[el.name] = el.value; }
+      if (el.type === "checkbox") { if (el.checked) o[el.name] = o[el.name] ? o[el.name] + ", " + el.value : el.value; }
       else if (el.value.trim()) o[el.name] = el.value.trim();
     });
     return o;
@@ -237,7 +246,7 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
       var v = JSON.parse(localStorage.getItem(KEY) || "null"); if (!v) return;
       Object.keys(v.d || {}).forEach(function(k){
         var els = form.querySelectorAll('[name="' + k + '"]');
-        els.forEach(function(el){ if (el.type === "radio") el.checked = el.value === v.d[k]; else el.value = v.d[k]; });
+        els.forEach(function(el){ if (el.type === "checkbox") el.checked = String(v.d[k]).split(", ").indexOf(el.value) > -1; else el.value = v.d[k]; });
       });
       shownTasks = Math.max(1, Math.min(3, v.t || 1));
     } catch(e){}
@@ -254,11 +263,12 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
   }
   function valid(){
     var fs = steps[cur], first = null; clearMsgs(fs);
+    var picks = fs.querySelector('[name="ai_sub"]');
+    if (picks && !fs.querySelector('[name="ai_sub"]:checked')) { flag(picks, "Please tick at least one."); first = picks; }
     fs.querySelectorAll("[required]").forEach(function(el){
       if (el.closest("[hidden]")) return;
       var ok = true, text = "Please fill this in.";
-      if (el.type === "radio") { ok = !!form.querySelector('[name="' + el.name + '"]:checked'); text = "Please pick one."; }
-      else if (!el.value.trim()) ok = false;
+      if (!el.value.trim()) ok = false;
       else if (el.type === "email" && !/^\S+@\S+\.\S+$/.test(el.value.trim())) { ok = false; text = "That email doesn't look right. Check for a typo."; }
       if (!ok) { flag(el, text); if (!first) first = el; }
     });
@@ -279,11 +289,13 @@ footer{margin-top:clamp(36px,6vw,64px);padding-top:20px;border-top:1px solid var
   }
   back.addEventListener("click", function(){ if (cur > 0) { cur--; show(true); save(); } });
   form.addEventListener("input", save);
+  form.addEventListener("change", save);
+  form.addEventListener("change", function(e){ var f = e.target.closest && e.target.closest(".f.bad"); if (f && e.target.name === "ai_sub") { clearMsgs(f); f.classList.remove("bad"); } });
   form.addEventListener("submit", function(e){
     e.preventDefault();
     if (!valid()) return;
     if (cur < steps.length - 1) { cur++; show(true); save(); return; }
-    var payload = data(); payload.page_version = "1.0"; payload.submitted = new Date().toISOString();
+    var payload = data(); payload.page_version = "1.1"; payload.submitted = new Date().toISOString();
     next.disabled = true; next.textContent = "Sending…";
     var finish = function(sent){
       form.hidden = true;
